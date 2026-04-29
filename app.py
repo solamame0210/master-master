@@ -128,12 +128,22 @@ df.insert(0, "順位", df.index + 1)
 
 st.markdown("""
 <style>
+/* 表全体 */
 table {
     width: 50% !important;
     margin-left: auto;
     margin-right: auto;
 }
+
+/* 1列目（順位）を小さく */
+th:nth-child(1), td:nth-child(1) {
+    width: 50px !important;
+    text-align: center;
+}
+
+/* 他の列は中央 */
+th, td {
+    text-align: center;
+}
 </style>
 """, unsafe_allow_html=True)
-
-st.table(df.head(10))
