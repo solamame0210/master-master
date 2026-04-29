@@ -76,8 +76,8 @@ if 1 <= st.session_state.round <= 3:
     st.write("値:", st.session_state.value)
 
     with st.form(key="quiz_form", clear_on_submit=True):
-        user_input = st.text_input("2進数を入力してEnter")
-        submitted = st.form_submit_button("送信（Enter可）")
+        user_input = st.text_input("指数部８桁＋仮数部３桁を入力")
+        submitted = st.form_submit_button("送信")
 
     if submitted:
         if user_input == st.session_state.answer:
@@ -100,17 +100,21 @@ if 1 <= st.session_state.round <= 3:
 if st.session_state.finished:
     total = int(st.session_state.total_time)
 
-    st.title("終了！")
+    st.title("終了")
     st.write(f"合計時間: {total} 秒")
 
     name = st.text_input("名前を入力")
 
-    if st.button("ランキング登録"):
-        if name.strip() != "":
-            save_score(name, total)
-            st.success("登録完了！")
-        else:
-            st.warning("名前を入力して！")
+    if not st.session_state.submitted:
+        if st.button("ランキング登録"):
+            if name.strip() != "":
+                save_score(name, total)
+                st.success("登録完了")
+                st.session_state.submitted = True  
+            else:
+                st.warning("名前を入力")
+    else:
+        st.info("すでに登録済みです")
 
     st.subheader("ランキング")
     df = get_ranking()
