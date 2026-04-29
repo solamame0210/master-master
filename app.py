@@ -6,6 +6,9 @@ import pandas as pd
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 
+if "submitted" not in st.session_state:
+    st.session_state.submitted = False
+
 # =========================
 # Google Sheets 接続
 # =========================
