@@ -60,7 +60,7 @@ def generate_question():
 
     return t, o
 
-st.title("浮動小数点マスター（オンラインランキング）")
+st.markdown("<h1 style='text-align: center;'>浮動小数点マスターマスター</h1>", unsafe_allow_html=True)
 
 # スタート
 if st.button("スタート"):
