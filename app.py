@@ -126,4 +126,14 @@ df = get_ranking()
 df = df.reset_index(drop=True)
 df.insert(0, "順位", df.index + 1)
 
+st.markdown("""
+<style>
+table {
+    width: 50% !important;
+    margin-left: auto;
+    margin-right: auto;
+}
+</style>
+""", unsafe_allow_html=True)
+
 st.table(df.head(10))
