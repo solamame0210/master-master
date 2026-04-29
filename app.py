@@ -19,8 +19,7 @@ creds = ServiceAccountCredentials.from_json_keyfile_dict(
 )
 
 client = gspread.authorize(creds)
-sheet = client.open("ランキング").sheet1
-
+sheet = client.open_by_url("https://docs.google.com/spreadsheets/d/1I9Q2qB99pqfoof0KtssyNJgcuW4xIaFatfysVEvFdVA/edit?gid=0#gid=0").sheet1
 def save_score(name, score):
     sheet.append_row([name, score])
 
