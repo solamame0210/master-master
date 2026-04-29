@@ -123,8 +123,7 @@ st.subheader("ランキング")
 
 df = get_ranking()
 
-# 🔥 ここに追加
 df = df.reset_index(drop=True)
 df.insert(0, "順位", df.index + 1)
 
-st.dataframe(df.head(10))
+st.dataframe(df.head(10), hide_index=True)
