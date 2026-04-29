@@ -119,6 +119,12 @@ if st.session_state.finished:
     else:
         st.info("すでに登録済みです")
 
-    st.subheader("ランキング")
-    df = get_ranking()
-    st.dataframe(df.head(10))
+st.subheader("ランキング")
+
+df = get_ranking()
+
+# 🔥 ここに追加
+df = df.reset_index(drop=True)
+df.insert(0, "順位", df.index + 1)
+
+st.dataframe(df.head(10))
