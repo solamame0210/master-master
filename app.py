@@ -29,7 +29,7 @@ def save_score(name, score):
 def get_ranking():
     data = sheet.get_all_records()
     df = pd.DataFrame(data)
-    return df.sort_values("時間")
+    return df.sort_values("時間(s)")
 
 # =========================
 # ゲーム部分
