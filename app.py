@@ -75,16 +75,25 @@ if 1 <= st.session_state.round <= 3:
     st.subheader(f"第 {st.session_state.round} 問")
     st.write("値:", st.session_state.value)
 
-    user_input = st.text_input("2進数を入力")
+    # 入力欄（Enterで即処理される）
+    user_input = st.text_input(
+        "2進数を入力してEnter",
+        key="input_box"
+    )
 
-    if st.button("決定"):
+    # Enter押されたらここに入る
+    if user_input:
         if user_input == st.session_state.answer:
             elapsed = time.time() - st.session_state.start_time
             st.session_state.total_time += elapsed
 
             st.success(f"正解！ {elapsed:.2f}秒")
 
+            # 次へ
             st.session_state.round += 1
+
+            # 🔥 入力リセット
+            st.session_state["input_box"] = ""
 
             if st.session_state.round <= 3:
                 st.session_state.value, st.session_state.answer = generate_question()
@@ -92,9 +101,9 @@ if 1 <= st.session_state.round <= 3:
                 st.rerun()
             else:
                 st.session_state.finished = True
+
         else:
             st.error("不正解")
-
 # 終了
 if st.session_state.finished:
     total = int(st.session_state.total_time)
