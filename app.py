@@ -147,3 +147,4 @@ th, td {
 }
 </style>
 """, unsafe_allow_html=True)
+st.table(df.head(10))
