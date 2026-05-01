@@ -24,6 +24,14 @@ creds = ServiceAccountCredentials.from_json_keyfile_dict(
 client = gspread.authorize(creds)
 sheet = client.open_by_url("https://docs.google.com/spreadsheets/d/1I9Q2qB99pqfoof0KtssyNJgcuW4xIaFatfysVEvFdVA/edit?gid=0#gid=0").sheet1
 def save_score(name, score):
+    data = sheet.get_all_records()
+
+    for i, row in enumerate(data):
+        if row["名前"] == name:
+            if score < row["クリアタイム"]:
+                sheet.update_cell(i+2, 2, score)
+            return
+
     sheet.append_row([name, score])
 
 def get_ranking():
