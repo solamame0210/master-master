@@ -28,7 +28,7 @@ def save_score(name, score):
 
     for i, row in enumerate(data):
         if row["名前"] == name:
-            if score < row["クリアタイム"]:
+            if score < row["時間(s)"]:
                 sheet.update_cell(i+2, 2, score)
             return
 
